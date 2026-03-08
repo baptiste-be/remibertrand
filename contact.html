@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rémi Bertrand - Contact</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta property="og:title" content="Rémi Bertrand – Site officiel">
+    <meta property="og:site_name" content="Rémi Bertrand – Site officiel">
+    <meta name="description" content="Site officiel de Rémi Bertrand, écrivain et éditeur belge. Découvrez ses livres, ses publications et son univers littéraire.">
+
+    <style>
+        :root {
+            --main: #d35400;
+            --dark: #2c3e50;
+        }
+
+        html { overflow-y: scroll; }
+
+        body {
+            background: #f4f4f4 url('carrote.jpg') repeat;
+            background-size: 150px;
+            margin: 0;
+            font-family: 'Georgia', serif;
+        }
+
+        .main-nav {
+            background: white;
+            padding: 25px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .main-nav::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -18px;
+            width: 100%;
+            height: 18px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.12), transparent);
+        }
+
+        .nav-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-family: Arial, sans-serif;
+            font-size: 0.85em;
+            padding: 5px 0;
+            position: relative;
+            transition: 0.25s ease;
+        }
+
+        .nav-link:hover { color: var(--main); }
+
+        .nav-link.active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 100%;
+            height: 3px;
+            background: var(--main);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 60px auto;
+            background: white;
+            padding: 50px;
+            border-radius: 14px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .follow-text {
+            font-size: 1rem;
+            font-weight: bold;
+            color: var(--dark);
+            margin-bottom: 25px;
+        }
+
+        .social-logos {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .social-logos img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .social-logos img:hover { transform: scale(1.15); }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            text-align: left;
+        }
+
+        input, textarea {
+            padding: 12px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            font-size: 1rem;
+            font-family: Arial, sans-serif;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 140px;
+        }
+
+        button {
+            padding: 14px;
+            background: var(--main);
+            color: white;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.25s;
+        }
+
+        button:hover { background: #b84300; }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-family: Arial, sans-serif;
+            font-size: 0.8rem;
+            color: white;
+        }
+    </style>
+
+    
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+<body>
+
+<nav class="main-nav">
+    <div class="nav-inner">
+        <a href="https://remibertrand.net/accueil" class="nav-link">Accueil</a>
+        <a href="https://remibertrand.net/livres" class="nav-link">Livres</a>
+        <a href="https://remibertrand.net/contact" class="nav-link active">Contact</a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="follow-text">Suivez-moi sur</div>
+
+    <div class="social-logos">
+        <a href="https://www.facebook.com/share/14rXdNYScwF/?mibextid=wwXIfr" target="_blank">
+            <img src="facebook.png" alt="Facebook">
+        </a>
+        <a href="https://www.instagram.com/_remibertrand" target="_blank">
+            <img src="insta.png" alt="Instagram">
+        </a>
+    </div>
+
+    <h2 style="color: var(--dark); margin-bottom: 20px;">Me contacter</h2>
+
+    
+    <form action="https://formsubmit.co/info@remibertrand.net" method="POST">
+
+        <input type="hidden" name="_subject" value="Nouveau message depuis le site">
+
+        
+        <input type="hidden" name="_turnstile" value="true">
+
+        <input type="text" name="Nom" placeholder="Votre nom" required>
+        <input type="email" name="Email" placeholder="Votre adresse e-mail" required>
+        <textarea name="Message" placeholder="Votre message" required></textarea>
+
+        
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAACNDfSd14LlihGxz"></div>
+
+        <button type="submit">Envoyer le message</button>
+    </form>
+</div>
+
+<footer>© 2026 Rémi Bertrand</footer>
+
+<script src="secure.js"></script>
+
+</body>
+</html>

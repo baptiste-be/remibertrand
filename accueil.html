@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rémi Bertrand - Site officiel</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta property="og:title" content="Rémi Bertrand – Site officiel">
+    <meta property="og:site_name" content="Rémi Bertrand – Site officiel">
+    <meta name="description" content="Site officiel de Rémi Bertrand, écrivain et éditeur belge. Découvrez ses livres, ses publications et son univers littéraire.">
+
+    <style>
+        :root {
+            --main: #d35400;
+            --dark: #2c3e50;
+            --text: #555;
+        }
+
+        html { overflow-y: scroll; }
+
+        body {
+            background: #f4f4f4 url('carrote.jpg') repeat;
+            background-size: 150px;
+            margin: 0;
+            font-family: 'Georgia', serif;
+        }
+
+        
+        .main-nav {
+            background: white;
+            padding: 25px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .main-nav::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -18px;
+            width: 100%;
+            height: 18px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.12), transparent);
+        }
+
+        .nav-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-family: Arial, sans-serif;
+            font-size: 0.85em;
+            padding: 5px 0;
+            position: relative;
+            transition: 0.25s ease;
+        }
+
+        .nav-link:hover { color: var(--main); }
+
+        .nav-link.active::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -4px;
+            width: 100%;
+            height: 3px;
+            background: var(--main);
+        }
+
+ 
+        .container {
+            max-width: 1000px;
+            margin: 60px auto;
+            background: white;
+            padding: 50px;
+            border-radius: 14px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 0;
+            color: var(--dark);
+            font-size: 2.3rem;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+        }
+
+        .subtitle-job {
+            text-align: center;
+            color: var(--main);
+            font-weight: bold;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin-top: 6px;
+            margin-bottom: 35px;
+        }
+
+
+        .content-flex {
+            display: block;
+            text-align: center;
+        }
+
+        .profile-photo {
+            margin-bottom: 30px;
+        }
+
+        .profile-photo-inner {
+            display: inline-block;
+            text-align: center;
+        }
+
+        .profile-photo img {
+            width: 100%;
+            max-width: 280px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+            display: block;
+            margin: 0 auto;
+        }
+
+        .bio-text {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--text);
+            text-align: justify;
+            position: relative;
+            overflow: hidden;
+            max-height: 7.5em;
+        }
+
+        .bio-text::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3em;
+            background: linear-gradient(to bottom, transparent, white);
+            pointer-events: none;
+        }
+
+        .bio-text.expanded {
+            max-height: 2000px;
+        }
+
+        .bio-text.expanded::after {
+            opacity: 0;
+        }
+
+        .read-more-btn {
+            display: block;
+            margin: 15px auto 0 auto;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: var(--main);
+            cursor: pointer;
+        }
+
+        @media (min-width: 900px) {
+            .content-flex {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 40px;
+                text-align: justify;
+            }
+
+            .profile-photo {
+                margin: 0;
+                flex: 0 0 35%;
+                display: flex;
+                justify-content: center;
+            }
+
+            .profile-photo img {
+                max-width: 320px;
+            }
+
+            .bio-text {
+                flex: 1 1 65%;
+                max-height: none !important;
+                overflow: visible;
+            }
+
+            .bio-text::after,
+            .read-more-btn {
+                display: none !important;
+            }
+        }
+
+        /* SECTION LIVRES */
+        .books-title {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-size: 1.6rem;
+            color: var(--dark);
+            margin-bottom: 35px;
+            letter-spacing: 2px;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 22px;
+            margin-top: 20px;
+        }
+
+        /* Animation au scroll : état initial */
+        .book-card {
+            display: block;
+            background: #fafafa;
+            padding: 14px;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            transition: 0.45s ease;
+            opacity: 0;
+            transform: translateY(60px) scale(0.85);
+        }
+
+        /* Quand visible à l’écran */
+        .book-card.visible {
+    animation: bookAppear 0.55s cubic-bezier(.25,.8,.25,1) forwards;
+}
+
+.book-card.visible:nth-child(1) { animation-delay: 0.05s; }
+.book-card.visible:nth-child(2) { animation-delay: 0.10s; }
+.book-card.visible:nth-child(3) { animation-delay: 0.15s; }
+.book-card.visible:nth-child(4) { animation-delay: 0.20s; }
+.book-card.visible:nth-child(5) { animation-delay: 0.25s; }
+.book-card.visible:nth-child(6) { animation-delay: 0.30s; }
+.book-card.visible:nth-child(7) { animation-delay: 0.35s; }
+.book-card.visible:nth-child(8) { animation-delay: 0.40s; }
+
+
+
+
+        @keyframes bookAppear {
+            0% {
+                opacity: 0;
+                transform: translateY(60px) scale(0.85);
+            }
+            60% {
+                opacity: 1;
+                transform: translateY(-10px) scale(1.03);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .book-card:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 18px 35px rgba(0,0,0,0.22);
+        }
+
+        .book-card img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+        }
+
+        @media (min-width: 900px) {
+            .books-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-family: Arial, sans-serif;
+            font-size: 0.8rem;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="main-nav">
+    <div class="nav-inner">
+        <a href="https://remibertrand.net/accueil" class="nav-link active">Accueil</a>
+        <a href="https://remibertrand.net/livres" class="nav-link">Livres</a>
+        <a href="https://remibertrand.net/contact" class="nav-link">Contact</a>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>Rémi Bertrand</h1>
+    <div class="subtitle-job">Écrivain • Éditeur</div>
+
+    <div class="content-flex">
+        <div class="profile-photo">
+            <div class="profile-photo-inner">
+                <img src="remi.jpg" alt="Rémi Bertrand">
+                <p style="text-align:center; font-size:12px; color:#777; margin-top:6px;">
+                    © EmiVa
+                </p>
+            </div>
+        </div>
+
+        <div class="bio-text" id="bioText">
+            <p>Rémi Bertrand est l’auteur de romans (<em>La Mandarine blanche</em>, <em>Coxyde</em>) et d’ouvrages ludiques sur la langue française qui ont rencontré un large public (<em>Un bouquin n’est pas un livre</em> et <em>Un mot pour un autre</em>, parus dans la collection « Le goût des mots » aux Éditions Points). Il a également consacré un essai à l’œuvre de Philippe Delerm.</p>
+
+            <p>On lui doit <em>À la gare comme à la guerre !</em>, une saynète satirique publiée à l’occasion des dix ans de chantier de la gare de Mons.</p>
+
+            <p>En 2025, <em>Poil de Cul roux</em>, roman d’enquête et d’introspection, brouille les genres et bouscule les idées reçues sur la rousseur et sur l’œuvre de Jules Renard.</p>
+
+            <p>Il a créé avec son épouse les siestes acoustiques de Maison rouge, qui font la part belle aux artistes de la scène musicale belge dans le cadre d’un concept store atypique.</p>
+
+            <p>Il s'attache par ailleurs à revaloriser l'œuvre, essentiellement théâtrale, de Franz Michaux, avec la famille de l'auteur.</p>
+
+            <p>Il est coordinateur éditorial (De Boeck, Van In) et éditeur (Edern).</p>
+        </div>
+    </div>
+
+    <div class="read-more-btn" id="readMoreBtn">▼ Lire la suite</div>
+</div>
+
+<div class="container" id="mes-livres" style="margin-top:40px;">
+
+    <h2 class="books-title">– MES LIVRES –</h2>
+
+    <div class="books-grid">
+
+        <a href="https://remibertrand.net/poil-de-cul-roux" class="book-card">
+            <img src="couverture-poil-de-cul.jpg" alt="Poil de cul roux">
+        </a>
+
+        <a href="https://remibertrand.net/à-la-gare-comme-à-la-guerre" class="book-card">
+            <img src="gare.jpg" alt="À la gare comme à la guerre">
+        </a>
+
+        <a href="https://remibertrand.net/24-seconde-par-image" class="book-card">
+            <img src="24.jpg" alt="24 secondes par image">
+        </a>
+
+        <a href="https://remibertrand.net/un-mot-pour-un-autre" class="book-card">
+            <img src="couverture-un-mot-pour-un-autre.jpg" alt="Un mot pour un autre">
+        </a>
+
+        <a href="https://remibertrand.net/un-bouquin-n-est-pas-un-livre" class="book-card">
+            <img src="couverture-un-bouquin-n-est-pas-un-livre.jpg" alt="Un bouquin n'est pas un livre">
+        </a>
+
+        <a href="https://remibertrand.net/coxyde" class="book-card">
+            <img src="coxyde.jpg" alt="Coxyde">
+        </a>
+
+        <a href="https://remibertrand.net/la-mandarine-blanche" class="book-card">
+            <img src="mandarine.jpg" alt="La Mandarine blanche">
+        </a>
+
+        <a href="https://remibertrand.net/philippe-delerm-et-le-minimalisme-positif" class="book-card">
+            <img src="delerm.jpg" alt="Philippe Delerm et le minimalisme positif">
+        </a>
+        
+
+    </div>
+</div>
+
+<footer>© 2026 Rémi Bertrand</footer>
+
+<script>
+const bio = document.getElementById('bioText');
+const btn = document.getElementById('readMoreBtn');
+
+if (btn) {
+    btn.addEventListener('click', () => {
+        bio.classList.toggle('expanded');
+        btn.textContent = bio.classList.contains('expanded')
+            ? "▲ Lire moins"
+            : "▼ Lire la suite";
+    });
+}
+
+
+const cards = document.querySelectorAll('.book-card');
+
+if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.2 });
+
+    cards.forEach(card => observer.observe(card));
+} else {
+    
+    cards.forEach(card => card.classList.add('visible'));
+}
+</script>
+
+<script src="secure.js"></script>
+
+</body>
+</html>

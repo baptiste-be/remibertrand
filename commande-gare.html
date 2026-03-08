@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Commander – À la gare comme à la guerre !</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<meta property="og:title" content="Rémi Bertrand – Site officiel">
+<meta property="og:site_name" content="Rémi Bertrand – Site officiel">
+<meta name="description" content="Commander le livre « À la gare comme à la guerre ! » de Rémi Bertrand.">
+
+<style>
+:root {
+    --main: #d35400;
+    --dark: #2c3e50;
+    --text: #555;
+    --btn1: #f39c12;
+    --btn2: #d35400;
+}
+
+body {
+    background: #f4f4f4 url('carrote.jpg') repeat;
+    background-size: 150px;
+    margin: 0;
+    font-family: 'Georgia', serif;
+}
+
+.main-nav {
+    background: white;
+    padding: 25px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.nav-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--dark);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: Arial, sans-serif;
+    font-size: 0.85em;
+    padding: 5px 0;
+    transition: 0.25s ease;
+}
+
+.nav-link:hover {
+    color: var(--main); /* hover orange */
+}
+
+.container {
+    max-width: 900px;
+    margin: 60px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 14px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    color: var(--dark);
+    margin-bottom: 30px;
+    font-size: 1.8rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+label {
+    font-size: 0.9rem;
+    color: var(--dark);
+    font-weight: bold;
+}
+
+input {
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    font-size: 1rem;
+}
+
+.two-cols {
+    display: flex;
+    gap: 20px;
+}
+
+.two-cols .field-group {
+    flex: 1;
+}
+
+/* Quantité */
+.quantity-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.quantity-controls {
+    display: flex;
+    align-items: center;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.quantity-controls button {
+    width: 38px;
+    height: 38px;
+    border: none;
+    background: #eee;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.quantity-controls input {
+    width: 60px;
+    border: none;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.quantity-info {
+    font-size: 0.85rem;
+    color: #777;
+}
+
+button[type="submit"] {
+    padding: 12px 28px;
+    background: linear-gradient(135deg, var(--btn1), var(--btn2));
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(211, 84, 0, 0.35);
+    transition: 0.25s;
+    align-self: flex-start;
+}
+
+footer {
+    text-align: center;
+    padding: 40px;
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+    color: white;
+}
+
+@media (max-width: 700px) {
+    .two-cols {
+        flex-direction: column;
+    }
+}
+</style>
+
+<!-- Cloudflare Turnstile -->
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+</head>
+<body>
+
+<div class="main-nav">
+    <div class="nav-inner">
+        <a href="à-la-gare-comme-à-la-guerre.html" class="nav-link">←Retour</a>
+    </div>
+</div>
+
+<div class="container">
+    <h1>Commander « À la gare comme à la guerre ! »</h1>
+
+    <form action="https://formsubmit.co/info@remibertrand.net" method="POST">
+        <input type="hidden" name="_subject" value="Nouvelle commande – À la gare comme à la guerre !">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="Livre" value="À la gare comme à la guerre !">
+
+        <!-- Nom / Prénom -->
+        <div class="two-cols">
+            <div class="field-group">
+                <label for="prenom">Prénom</label>
+                <input type="text" id="prenom" name="Prénom" required>
+            </div>
+            <div class="field-group">
+                <label for="nom">Nom</label>
+                <input type="text" id="nom" name="Nom" required>
+            </div>
+        </div>
+
+        <!-- Email -->
+        <div class="field-group">
+            <label for="email">Adresse e-mail</label>
+            <input type="email" id="email" name="Email" required>
+        </div>
+
+        <!-- Quantité -->
+        <div class="field-group">
+            <label>Quantité</label>
+            <div class="quantity-wrapper">
+                <div class="quantity-controls">
+                    <button type="button" id="minusBtn">−</button>
+                    <input type="number" id="quantity" name="Quantité" value="1" min="1">
+                    <button type="button" id="plusBtn">+</button>
+                </div>
+                <div class="quantity-info">
+                    10,00 € prix unitaire + 3,00 € frais de port
+                </div>
+            </div>
+        </div>
+
+        <!-- Adresse -->
+        <div class="field-group">
+            <label>Adresse de livraison</label>
+            <input type="text" name="Rue" placeholder="Rue" required>
+            <input type="text" name="Numéro" placeholder="Numéro" required>
+            <div class="two-cols">
+                <div class="field-group">
+                    <input type="text" name="Code postal" placeholder="Code postal" required>
+                </div>
+                <div class="field-group">
+                    <input type="text" name="Ville" placeholder="Ville" required>
+                </div>
+            </div>
+            <input type="text" name="Pays" placeholder="Pays" required>
+        </div>
+
+        <!-- Cloudflare Turnstile -->
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAACNDfSd14LlihGxz"></div>
+
+        <button type="submit">Envoyer la commande</button>
+    </form>
+</div>
+
+<footer>© 2026 Rémi Bertrand</footer>
+
+<script>
+const qtyInput = document.getElementById('quantity');
+const plusBtn = document.getElementById('plusBtn');
+const minusBtn = document.getElementById('minusBtn');
+
+/* Empêche d'aller en dessous de 1 */
+plusBtn.addEventListener('click', () => {
+    qtyInput.value = parseInt(qtyInput.value) + 1;
+});
+
+minusBtn.addEventListener('click', () => {
+    let val = parseInt(qtyInput.value);
+    if (val > 1) qtyInput.value = val - 1;
+});
+
+qtyInput.addEventListener('input', () => {
+    if (qtyInput.value === "" || parseInt(qtyInput.value) < 1) {
+        qtyInput.value = 1;
+    }
+});
+</script>
+
+<script src="secure.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rémi Bertrand - Coxyde</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <meta property="og:title" content="Rémi Bertrand – Site officiel">
+    <meta property="og:site_name" content="Rémi Bertrand – Site officiel">
+    <meta name="description" content="Site officiel de Rémi Bertrand, écrivain et éditeur belge. Découvrez ses livres, ses publications et son univers littéraire.">
+
+    <style>
+        :root {
+            --main: #d35400;
+            --dark: #2c3e50;
+            --text: #555;
+            --accent: #d35400;
+            --btn1: #f39c12;
+            --btn2: #d35400;
+        }
+
+        html {
+            overflow-y: scroll;
+        }
+
+        body {
+            background: #f4f4f4 url('carrote.jpg') repeat;
+            background-size: 150px;
+            margin: 0;
+            font-family: 'Georgia', serif;
+        }
+
+        .main-nav {
+            background: white;
+            padding: 25px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .main-nav::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -18px;
+            width: 100%;
+            height: 18px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.12), transparent);
+        }
+
+        .nav-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-family: Arial, sans-serif;
+            font-size: 0.85em;
+            padding: 5px 0;
+            transition: 0.25s ease;
+        }
+
+        .nav-link:hover { color: var(--main); }
+
+        .container {
+            max-width: 1000px;
+            margin: 60px auto;
+            background: white;
+            padding: 40px 50px;
+            border-radius: 14px;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+            font-family: Arial, sans-serif;
+        }
+
+        .product-wrapper {
+            display: flex;
+            gap: 40px;
+        }
+
+        .product-image {
+            flex: 0 0 320px;
+        }
+
+        .product-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        
+        .product-image-3d-btn {
+            margin-top: 10px;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .product-image-3d-btn img {
+            display: block;
+            height: 40px;
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        h1 {
+            font-family: 'Georgia', serif;
+            font-size: 2.2rem;
+            margin: 0;
+            color: var(--dark);
+        }
+
+        .price-buy {
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .price {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
+
+        .buy-now {
+            display: inline-block;
+            padding: 12px 28px;
+            background: linear-gradient(135deg, var(--btn1), var(--btn2));
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 6px 18px rgba(211, 84, 0, 0.35);
+            transition: 0.25s;
+        }
+
+        .buy-now:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(211, 84, 0, 0.45);
+        }
+
+        .desc {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: var(--text);
+            line-height: 1.7;
+            text-align: justify;
+        }
+
+        .specs {
+            margin-top: 30px;
+            background: #fafafa;
+            padding: 18px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.8;
+            border: 1px solid #eee;
+        }
+
+        .specs strong {
+            color: var(--dark);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            font-family: Arial, sans-serif;
+            font-size: 0.8rem;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .product-wrapper {
+                flex-direction: column;
+            }
+        }
+
+        
+        .modal-3d-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+        }
+
+        .modal-3d {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            max-width: 800px;
+            width: 90%;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        }
+
+        .modal-3d-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            font-family: Arial, sans-serif;
+            color: var(--dark);
+        }
+
+        .modal-3d-close {
+            border: none;
+            background: transparent;
+            font-size: 1.4rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .modal-3d-viewer {
+            width: 100%;
+            height: 500px;
+        }
+
+        @media (max-width: 600px) {
+            .modal-3d-viewer {
+                height: 350px;
+            }
+        }
+    </style>
+
+    
+    <script type="module" src="model-viewer.min.js"></script>
+</head>
+<body>
+
+<div class="main-nav">
+    <div class="nav-inner">
+        <a href="https://remibertrand.net/accueil#mes-livres" class="nav-link">←Retour</a>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="product-wrapper">
+
+        <div class="product-image">
+            <img src="coxyde.jpg" alt="Coxyde">
+
+            
+            <div class="product-image-3d-btn" id="open-3d">
+                <img src="3d.png" alt="Voir le livre en 3D">
+            </div>
+        </div>
+
+        <div class="product-info">
+
+            <h1>Coxyde</h1>
+
+            <div class="price-buy">
+                <div class="price">10,00 €</div>
+                <a href="https://remibertrand.net/commande-coxyde" class="buy-now">Acheter</a>
+            </div>
+
+            <div class="desc">
+                
+                <p><strong>Le roman : une escapade à rebours</strong><br>
+                Clément n’a qu’un rêve : fabriquer des livres.
+                Marie vient bousculer cette certitude ; à Clément de retrouver les traces, comme autant de preuves de sa vocation.
+                Les amants se laissent dériver. Paris, Versailles… Enfin, la Mer du Nord qui réveille en eux des images, des sensations…
+                Comment ont-ils pu ignorer ce passé commun ? S’étaient-ils déjà frôlés, en vacances, en enfance ?</p>
+
+                <p><strong>Les personnages : Marie, Clément, Coxyde</strong><br>
+                Il y a Clément (qui se destine à l’édition). Il y a Marie (qui veut savoir pourquoi).
+                Entre les amoureux, Coxyde, que chacun connaît différemment.
+                Le village côtier et ses cuistax, ses gaufres, ses villas aux tuiles orangées, le bateau amphibie, l’Horloge, La Vigie, Siska, le Musée Delvaux...
+                Mais aussi, un étrange petit livre cartonné. Comme une réponse à leur amour.</p>
+            </div>
+
+            <div class="specs">
+                <strong>Genre :</strong> Roman<br>
+                <strong>Éditeur :</strong> Le Somnambule équivoque<br>
+                <strong>Année :</strong> 2006<br>
+                <strong>Nombre de pages :</strong> 64 pages<br>
+                <strong>Disponibilité :</strong> Papier
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<footer>© 2026 Rémi Bertrand</footer>
+
+<div class="modal-3d-overlay" id="modal-3d">
+    <div class="modal-3d">
+        <div class="modal-3d-header">
+            <div>Coxyde</div>
+            <button class="modal-3d-close" id="close-3d" aria-label="Fermer la vue 3D">×</button>
+        </div>
+        <model-viewer class="modal-3d-viewer"
+                      src="coxyde.glb"
+                      camera-controls
+                      auto-rotate
+                      shadow-intensity="1"
+                      ar
+                      alt="Livre Coxyde en 3D">
+        </model-viewer>
+    </div>
+</div>
+
+<script>
+    const open3D = document.getElementById('open-3d');
+    const modal3D = document.getElementById('modal-3d');
+    const close3D = document.getElementById('close-3d');
+
+    open3D.addEventListener('click', () => {
+        modal3D.style.display = 'flex';
+    });
+
+    close3D.addEventListener('click', () => {
+        modal3D.style.display = 'none';
+    });
+
+    modal3D.addEventListener('click', (e) => {
+        if (e.target === modal3D) {
+            modal3D.style.display = 'none';
+        }
+    });
+</script>
+
+<script src="secure.js"></script>
+
+</body>
+</html>

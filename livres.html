@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rémi Bertrand - Livres</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<meta property="og:title" content="Rémi Bertrand – Site officiel">
+<meta property="og:site_name" content="Rémi Bertrand – Site officiel">
+<meta name="description" content="Site officiel de Rémi Bertrand, écrivain et éditeur belge. Découvrez ses livres, ses publications et son univers littéraire.">
+
+<style>
+:root{--main:#d35400;--dark:#2c3e50;--text:#555;--accent:#d35400;}
+html{overflow-y:scroll;}
+body{background:#f4f4f4 url('carrote.jpg') repeat;background-size:150px;margin:0;font-family:'Georgia',serif;}
+.main-nav {background: white;padding: 25px 0;position: relative;box-shadow: 0 2px 10px rgba(0,0,0,0.1);}
+.main-nav::after{content:"";position:absolute;left:0;bottom:-18px;width:100%;height:18px;background:linear-gradient(to bottom,rgba(0,0,0,0.12),transparent);}
+.nav-inner{max-width:1000px;margin:0 auto;display:flex;justify-content:center;gap:60px;}
+.nav-link{text-decoration:none;color:var(--dark);font-weight:bold;text-transform:uppercase;font-family:Arial,sans-serif;font-size:0.85em;padding:5px 0;position:relative;transition:0.25s ease;}
+.nav-link:hover{color:var(--main);}
+.nav-link.active::after{content:"";position:absolute;left:0;bottom:-4px;width:100%;height:3px;background:var(--main);}
+.container{max-width:1000px;margin:60px auto;background:white;padding:50px;border-radius:14px;box-shadow:0 12px 40px rgba(0,0,0,0.12);font-family:Arial,sans-serif;text-align:center;}
+.tabs{display:flex;justify-content:center;gap:60px;border-bottom:2px solid #eee;padding-bottom:10px;margin-bottom:30px;transform:translateX(0px);}
+.tab{font-weight:bold;cursor:pointer;color:var(--dark);padding-bottom:6px;font-size:0.95rem;transition:0.25s ease;}
+.tab:hover{color:var(--main);}
+.tab.active{color:var(--dark);border-bottom:3px solid var(--main);}
+.tab-content{display:none;margin-top:20px;text-align:left;}
+.tab-content.active{display:block;}
+.search-wrapper{position:relative;display:flex;justify-content:flex-end;margin-bottom:20px;}
+.search-input{height:32px;border-radius:16px;border:2px solid var(--accent);padding:0 12px;font-size:0.85rem;color:var(--dark);width:0;opacity:0;pointer-events:none;transition:width 0.3s ease,opacity 0.3s ease;}
+.search-wrapper:hover:not(.locked) .search-input,.search-wrapper.locked .search-input{width:180px;opacity:1;pointer-events:auto;}
+.search-icon-btn{background:none;border:none;cursor:pointer;}
+.search-icon{width:28px;height:28px;}
+.products-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;}
+.product-card{background:#fafafa;border-radius:12px;padding:14px;box-shadow:0 6px 18px rgba(0,0,0,0.08);text-decoration:none;color:inherit;display:block;transition:0.22s ease;}
+.product-card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(0,0,0,0.12);}
+.product-image{width:100%;max-width:180px;margin:0 auto;}
+.product-image img{width:100%;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.15);}
+.product-title{font-size:0.95rem;font-weight:bold;color:var(--dark);margin-top:10px;text-align:center;transition:0.25s ease;}
+.product-title:hover{color:var(--main);}
+.no-results{margin-top:10px;font-size:0.85rem;color:#999;display:none;text-align:center;}
+footer{text-align:center;padding:40px;font-family:Arial,sans-serif;font-size:0.8rem;color:white;}
+</style>
+</head>
+
+<body>
+
+<nav class="main-nav">
+<div class="nav-inner">
+<a href="https://remibertrand.net/accueil" class="nav-link">Accueil</a>
+<a href="https://remibertrand.net/livres" class="nav-link active">Livres</a>
+<a href="https://remibertrand.net/contact" class="nav-link">Contact</a>
+</div>
+</nav>
+
+<div class="container">
+
+<div class="tabs">
+<div class="tab" data-tab="auteur">Auteur</div>
+<div class="tab" data-tab="editeur">Éditeur</div>
+</div>
+
+<div class="tab-content" id="section-auteur">
+<div class="search-wrapper" id="search-wrapper-auteur">
+<input type="text" class="search-input" id="search-input-auteur" placeholder="Rechercher...">
+<button class="search-icon-btn"><img src="loupe.png" class="search-icon"></button>
+</div>
+
+<div class="products-grid" id="grid-auteur">
+<a href="https://remibertrand.net/produit-poil-de-cul-roux" class="product-card" data-title="poil de cul roux"><div class="product-image"><img src="couverture-poil-de-cul.jpg"></div><div class="product-title">Poil de Cul roux</div></a>
+<a href="https://remibertrand.net/produit-à-la-gare-comme-à-la-guerre" class="product-card" data-title="a la gare comme a la guerre"><div class="product-image"><img src="gare.jpg"></div><div class="product-title">À la gare comme à la guerre !</div></a>
+<a href="https://remibertrand.net/produit-24-seconde-par-image" class="product-card" data-title="24 secondes par image"><div class="product-image"><img src="24.jpg"></div><div class="product-title">24 secondes par image</div></a>
+<a href="https://remibertrand.net/produit-un-mot-pour-un-autre" class="product-card" data-title="un mot pour un autre"><div class="product-image"><img src="couverture-un-mot-pour-un-autre.jpg"></div><div class="product-title">Un mot pour un autre</div></a>
+<a href="https://remibertrand.net/produit-un-bouquin-n-est-pas-un-livre" class="product-card" data-title="un bouquin n est pas un livre"><div class="product-image"><img src="couverture-un-bouquin-n-est-pas-un-livre.jpg"></div><div class="product-title">Un bouquin n'est pas un livre</div></a>
+<a href="https://remibertrand.net/produit-coxyde" class="product-card" data-title="coxyde"><div class="product-image"><img src="coxyde.jpg"></div><div class="product-title">Coxyde</div></a>
+<a href="https://remibertrand.net/produit-la-mandarine-blanche" class="product-card" data-title="la mandarine blanche"><div class="product-image"><img src="mandarine.jpg"></div><div class="product-title">La Mandarine blanche</div></a>
+<a href="https://remibertrand.net/produit-philippe-delerm-et-le-minimalisme-positif" class="product-card" data-title="philippe delerm minimalisme positif"><div class="product-image"><img src="delerm.jpg"></div><div class="product-title">Philippe Delerm et le minimalisme positif</div></a>
+</div>
+
+<div class="no-results" id="no-results-auteur">Aucun résultat.</div>
+</div>
+
+<div class="tab-content" id="section-editeur">
+<div class="search-wrapper" id="search-wrapper-editeur">
+<input type="text" class="search-input" id="search-input-editeur" placeholder="Rechercher...">
+<button class="search-icon-btn"><img src="loupe.png" class="search-icon"></button>
+</div>
+
+<div class="products-grid" id="grid-editeur">
+<a href="https://remibertrand.net/produit-si-la-terre-tremble" class="product-card" data-title="si la terre tremble"><div class="product-image"><img src="couverture-si-la-terre-tremble.jpg"></div><div class="product-title">Si la terre tremble</div></a>
+<a href="https://remibertrand.net/produit-merci-pour-la-tendresse" class="product-card" data-title="merci pour la tendresse"><div class="product-image"><img src="couverture-merci-pour-la-tendresse.jpg"></div><div class="product-title">Merci pour la tendresse</div></a>
+<a href="https://remibertrand.net/produit-le-nouveau-michel-h" class="product-card" data-title="le nouveau michel h"><div class="product-image"><img src="couverture-le-nouveau-michel-h.jpg"></div><div class="product-title">Le Nouveau Michel H.</div></a>
+<a href="https://remibertrand.net/produit-ete-99" class="product-card" data-title="ete 99"><div class="product-image"><img src="couverture-ete-99.jpg"></div><div class="product-title">Été 99</div></a>
+</div>
+
+<div class="no-results" id="no-results-editeur">Aucun résultat.</div>
+</div>
+
+</div>
+
+<footer>© 2026 Rémi Bertrand</footer>
+
+<script>
+function normalize(str){return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9 ]/g,"").trim();}
+const STOPWORDS=["a","la","le","les","de","du","des","un","une","et","en","au","aux","pour","par","sur","dans","avec","sans","que","qui","quoi","ou"];
+
+function setupSmartSearch(inputId,gridSelector,noResultsId){
+const input=document.getElementById(inputId);
+const cards=document.querySelectorAll(gridSelector+" .product-card");
+const noResults=document.getElementById(noResultsId);
+cards.forEach(card=>{card.dataset.normalized=normalize(card.dataset.title||"");});
+input.addEventListener("input",()=>{
+const query=normalize(input.value);
+let words=query.split(" ").filter(w=>w.length>0&&!STOPWORDS.includes(w));
+if(words.length===0&&query.length>0)words=[query];
+let visible=0;
+cards.forEach(card=>{
+const title=card.dataset.normalized;
+const match=words.length===0?true:words.every(word=>title.includes(word));
+card.style.display=(!query||match)?"block":"none";
+if(!query||match)visible++;
+});
+if(noResults)noResults.style.display=(visible===0&&query)?"block":"none";
+});
+}
+
+setupSmartSearch("search-input-auteur","#grid-auteur","no-results-auteur");
+setupSmartSearch("search-input-editeur","#grid-editeur","no-results-editeur");
+
+function setupSearchUI(wrapperId,inputId){
+const wrapper=document.getElementById(wrapperId);
+const input=document.getElementById(inputId);
+if(!wrapper)return;
+wrapper.addEventListener("click",(e)=>{
+if(e.target.closest('.search-icon-btn')){
+wrapper.classList.toggle("locked");
+if(!wrapper.classList.contains("locked")){
+input.value="";
+input.dispatchEvent(new Event("input"));
+}
+}
+});
+}
+
+setupSearchUI("search-wrapper-auteur","search-input-auteur");
+setupSearchUI("search-wrapper-editeur","search-input-editeur");
+
+function showTab(key){
+history.replaceState(null,"","#"+key);
+document.querySelectorAll(".tab").forEach(t=>{t.classList.toggle("active",t.dataset.tab===key);});
+document.querySelectorAll(".tab-content").forEach(c=>{c.classList.toggle("active",c.id==="section-"+key);});
+}
+
+document.querySelectorAll(".tab").forEach(tab=>{
+tab.addEventListener("click",()=>showTab(tab.dataset.tab));
+});
+
+window.addEventListener("DOMContentLoaded",()=>{
+let hash=window.location.hash.replace("#","").trim();
+if(hash!=="editeur")hash="auteur";
+showTab(hash);
+});
+</script>
+
+<script src="secure.js"></script>
+
+</body>
+</html>
